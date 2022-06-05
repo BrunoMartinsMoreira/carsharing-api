@@ -1,0 +1,10 @@
+{
+  "name": "apits",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Bruno Martins Moreira <bruno_moreira.19@outlook.com>",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.1"
+  }
+}
