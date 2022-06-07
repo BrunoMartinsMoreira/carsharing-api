@@ -1,12 +1,12 @@
 {
   "compilerOptions": {
-    "target": "es2018",                                  
-    "module": "commonjs",                                
-    "esModuleInterop": true,                            
-    "forceConsistentCasingInFileNames": true,           
-    "strict": true,                                      
-    "noImplicitAny": true,                           
+    "target": "es2018",
+    "module": "commonjs",
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    // "strict": true,                                      
+    "noImplicitAny": true,
     "skipLibCheck": true,
-    "outDir": "./dist"                                 
+    "outDir": "./dist"
   }
 }
