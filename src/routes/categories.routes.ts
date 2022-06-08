@@ -9,15 +9,17 @@ const categories: Category[] = [];
 categoriesRoutes.post('/', (req, res) => {
   const { name, description } = req.body;
 
-  const category: Category = {
+  const category = new Category();
+
+  Object.assign(category, {
     name,
     description,
     created_at: new Date(),
-  };
+  });
 
   categories.push(category);
 
-  return res.status(201).send();
+  return res.status(201).json({ category });
 });
 
 export { categoriesRoutes };
