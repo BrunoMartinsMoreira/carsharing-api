@@ -12,7 +12,10 @@ class CategoriesRepository {
     this.categories = [];
   }
 
-  public async create({ name, description }: ICreateCategoryDTO): Promise<void> {
+  public async create({
+    name,
+    description,
+  }: ICreateCategoryDTO): Promise<void> {
     const category = new Category();
 
     Object.assign(category, {
