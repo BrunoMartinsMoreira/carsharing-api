@@ -1,28 +1,30 @@
 import { Request, Response } from 'express';
-import categoriesRepository from '../repositories/CategoriesRepository';
+import { CategoriesRepository } from '../repositories/CategoriesRepository';
+import { CreateCategoryService } from '../services/CreateCategoryService';
 
 class CategoryController {
-  public async create(req: Request, res: Response) {
-    const { name, description } = req.body;
-
-    const categoryExists = categoriesRepository.findByName(name);
-    if (categoryExists) {
-      return res.status(400).json({
-        message: 'Category alrealdy exists',
-      });
-    }
-
-    categoriesRepository.create({
-      name,
-      description,
-    });
-    return res.status(201).send();
+  private createCategoryService;
+  constructor() {
+    const categoriesRepository = new CategoriesRepository();
+    this.createCategoryService = new CreateCategoryService(
+      categoriesRepository,
+    );
   }
 
-  public async list(req: Request, res: Response) {
+  public async create(req: Request, res: Response) {
+    try {
+      const { name, description } = req.body;
+      this.createCategoryService.execute({ name, description });
+      return res.status(201).send();
+    } catch (error) {
+      return res.status(400).json({ message: error.message });
+    }
+  }
+
+  /* public async list(req: Request, res: Response) {
     const categories = categoriesRepository.list();
     return res.json(categories);
-  }
+  } */
 }
 
-export default new CategoryController();
+export { CategoryController };
