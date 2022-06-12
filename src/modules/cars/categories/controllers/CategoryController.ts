@@ -1,5 +1,4 @@
 import { Request, Response } from 'express';
-// import { Category } from '../model/Category';
 import { CategoriesRepository } from '../repositories/CategoriesRepository';
 import { CreateCategoryService } from '../services/CreateCategoryService';
 import { ListCategoryService } from '../services/ListCategoryService';
