@@ -1,5 +1,5 @@
 // import { Category } from '../model/Category';
-import { ICategoryRepository } from '../repositories/ICategoriesRepository';
+import { ICategoryRepository } from '../../repositories/ICategoriesRepository';
 
 class ListCategoryService {
   constructor(private categoriesRepository: ICategoryRepository) {}
