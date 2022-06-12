@@ -1,14 +1,18 @@
 import { Request, Response } from 'express';
+// import { Category } from '../model/Category';
 import { CategoriesRepository } from '../repositories/CategoriesRepository';
 import { CreateCategoryService } from '../services/CreateCategoryService';
+import { ListCategoryService } from '../services/ListCategoryService';
 
 class CategoryController {
   private createCategoryService;
+  private listCategoryService;
   constructor() {
     const categoriesRepository = new CategoriesRepository();
     this.createCategoryService = new CreateCategoryService(
       categoriesRepository,
     );
+    this.listCategoryService = new ListCategoryService(categoriesRepository);
   }
 
   public async create(req: Request, res: Response) {
@@ -21,10 +25,14 @@ class CategoryController {
     }
   }
 
-  /* public async list(req: Request, res: Response) {
-    const categories = categoriesRepository.list();
-    return res.json(categories);
-  } */
+  public async list(req: Request, res: Response) {
+    try {
+      const categories = await this.listCategoryService.execute();
+      return res.status(200).json(categories);
+    } catch (error) {
+      return res.status(400).json({ message: error.message });
+    }
+  }
 }
 
 export { CategoryController };
