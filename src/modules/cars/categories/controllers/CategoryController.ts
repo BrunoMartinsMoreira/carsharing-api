@@ -1,8 +1,8 @@
 import { Request, Response } from 'express';
 // import { Category } from '../model/Category';
 import { CategoriesRepository } from '../repositories/CategoriesRepository';
-import { CreateCategoryService } from '../services/categories/CreateCategoryService';
-import { ListCategoryService } from '../services/categories/ListCategoryService';
+import { CreateCategoryService } from '../services/CreateCategoryService';
+import { ListCategoryService } from '../services/ListCategoryService';
 
 class CategoryController {
   private createCategoryService;
