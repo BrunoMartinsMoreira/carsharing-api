@@ -1,10 +1,15 @@
 import { Router } from 'express';
-import { CategoryController } from './controllers/CategoryController';
+import { createCategoryController } from './usecases/createCategory';
+import { listCategoriesController } from './usecases/ListCategory';
 
 const categoriesRoutes = Router();
-const categoryController = new CategoryController();
 
-categoriesRoutes.post('/', categoryController.create);
+categoriesRoutes.post('/', (req, res) =>
+  createCategoryController.handle(req, res),
+);
 
-categoriesRoutes.get('/', categoryController.list);
+categoriesRoutes.get('/', (req, res) =>
+  listCategoriesController.handle(req, res),
+);
+
 export { categoriesRoutes };
