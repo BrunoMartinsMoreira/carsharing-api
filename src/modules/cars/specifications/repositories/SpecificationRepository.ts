@@ -1,3 +1,4 @@
+/* eslint-disable no-use-before-define */
 import { Specification } from '../models/Specification';
 import {
   ICreateSpecificationDTO,
@@ -7,8 +8,17 @@ import {
 class SpecificationRepository implements ISpecificationRepository {
   private specifications: Specification[];
 
-  constructor() {
+  private static INSTANCE: SpecificationRepository;
+
+  private constructor() {
     this.specifications = [];
+  }
+
+  public static getInstace(): SpecificationRepository {
+    if (!SpecificationRepository.INSTANCE) {
+      SpecificationRepository.INSTANCE = new SpecificationRepository();
+    }
+    return SpecificationRepository.INSTANCE;
   }
 
   create({ name, description }: ICreateSpecificationDTO): void {
