@@ -5,7 +5,7 @@ class ImportCategoryController {
   constructor(private importCategoryUseCase: ImportCategoryUseCase) {}
 
   handle(req: Request, res: Response): Response {
-    const { file } = req;
+    const { file } = req.body;
 
     this.importCategoryUseCase.execute(file);
 
