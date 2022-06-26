@@ -8,6 +8,8 @@
     "noImplicitAny": true,
     "skipLibCheck": true,
     "outDir": "./dist",
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true
   }
 }
