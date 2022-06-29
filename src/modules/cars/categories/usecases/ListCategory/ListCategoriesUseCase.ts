@@ -3,8 +3,8 @@ import { ICategoryRepository } from '../../repositories/ICategoriesRepository';
 
 class ListCategoriesUseCase {
   constructor(private categoriesRepository: ICategoryRepository) {}
-  public execute(): Category[] {
-    const categories = this.categoriesRepository.list();
+  public async execute(): Promise<Category[]> {
+    const categories = await this.categoriesRepository.list();
 
     if (!categories.length) {
       throw new Error('Not categories found!');
