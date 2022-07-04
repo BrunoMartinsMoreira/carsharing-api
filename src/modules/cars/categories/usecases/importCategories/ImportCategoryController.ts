@@ -1,15 +1,21 @@
 import { Request, Response } from 'express';
+import { container } from 'tsyringe';
 import { ImportCategoryUseCase } from './ImportCategoriesUseCase';
 
 class ImportCategoryController {
-  constructor(private importCategoryUseCase: ImportCategoryUseCase) {}
+  async handle(req: Request, res: Response): Promise<Response> {
+    try {
+      const { file } = req.body;
 
-  handle(req: Request, res: Response): Response {
-    const { file } = req.body;
+      const importCategoryUseCase = container.resolve(ImportCategoryUseCase);
+      await importCategoryUseCase.execute(file);
 
-    this.importCategoryUseCase.execute(file);
-
-    return res.status(201).send();
+      return res.status(201).send();
+    } catch (error) {
+      return res
+        .status(400)
+        .json({ message: 'Não foi possível fazer o uploado do arquivo' });
+    }
   }
 }
 
