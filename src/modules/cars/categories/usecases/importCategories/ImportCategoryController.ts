@@ -12,9 +12,7 @@ class ImportCategoryController {
 
       return res.status(201).send();
     } catch (error) {
-      return res
-        .status(400)
-        .json({ message: 'Não foi possível fazer o uploado do arquivo' });
+      return res.status(400).json({ message: 'Could not upload file' });
     }
   }
 }
