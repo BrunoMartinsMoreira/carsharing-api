@@ -1,13 +1,7 @@
-interface ICreateUserDTO {
-  name: string;
-  username: string;
-  password: string;
-  email: string;
-  driver_licence: string;
-}
+import { ICreateUserDTO } from '../dtos/ICreateUsersDTO';
 
 interface IUsersRepository {
   create(data: ICreateUserDTO): Promise<void>;
 }
 
-export { IUsersRepository, ICreateUserDTO };
+export { IUsersRepository };
