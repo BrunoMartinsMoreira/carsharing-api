@@ -18,7 +18,7 @@ class CreateUserController {
 
       return res.status(201).send();
     } catch (error) {
-      return res.status(400).json({ message: 'error' });
+      return res.status(400).json({ message: 'Unknow error' });
     }
   }
 }
