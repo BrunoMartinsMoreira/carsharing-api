@@ -9,6 +9,15 @@ class UsersRepository implements IUsersRepository {
   constructor() {
     this.repository = getRepository(User);
   }
+  async findByEmail(email: string): Promise<User | null> {
+    const user = await this.repository.findOne({
+      where: {
+        email,
+      },
+    });
+
+    return user || null;
+  }
 
   async create({
     name,
