@@ -10,9 +10,9 @@ class AuthenticateUserController {
         AuthenticateUserUseCase,
       );
 
-      const auth = await authenticateUserUseCase.execute({ email, password });
+      const token = await authenticateUserUseCase.execute({ email, password });
 
-      return res.status(200).json(auth);
+      return res.status(200).json(token);
     } catch (error) {
       return res.status(400).json({ message: error });
     }
