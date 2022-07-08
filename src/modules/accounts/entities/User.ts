@@ -7,22 +7,22 @@ class User {
   id?: string;
 
   @Column()
-  name?: string;
+  name!: string;
 
   @Column()
-  email?: string;
+  email!: string;
 
   @Column()
-  password?: string;
+  password!: string;
 
   @Column()
-  driver_licence?: string;
+  driver_licence!: string;
 
   @Column()
-  isAdmin?: boolean;
+  isAdmin!: boolean;
 
   @CreateDateColumn()
-  created_at?: Date;
+  created_at!: Date;
 
   constructor() {
     if (!this.id) this.id = uuidv4();
