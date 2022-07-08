@@ -21,13 +21,13 @@ class SpecificationRepository implements ISpecificationRepository {
     await this.respository.save(specification);
   }
 
-  public async findByName(name: string): Promise<Specification | null> {
+  public async findByName(name: string): Promise<Specification | undefined> {
     const specification = await this.respository.findOne({
       where: {
         name,
       },
     });
-    return specification || null;
+    return specification;
   }
 }
 
