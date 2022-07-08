@@ -10,8 +10,10 @@ interface IRequest {
 
 interface IResponse {
   user: {
+    id: string;
+    name: string;
     email: string;
-    password: string;
+    isAdmin: boolean;
   };
   token: string;
 }
@@ -40,10 +42,16 @@ class AuthenticateUserUseCase {
       expiresIn: '7d',
     });
 
-    return {
-      user,
+    const tokenResponse: IResponse = {
+      user: {
+        id: user.id,
+        name: user.name,
+        email,
+        isAdmin: user.isAdmin,
+      },
       token,
     };
+    return tokenResponse;
   }
 }
 
