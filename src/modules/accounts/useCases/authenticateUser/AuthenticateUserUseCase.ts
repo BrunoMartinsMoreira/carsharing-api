@@ -37,7 +37,7 @@ class AuthenticateUserUseCase {
       throw new Error('Incorret email or password');
     }
 
-    const token = sign({}, '26ddae7bb48aa3ae72ce7e08ccbafc19', {
+    const token = sign({}, String(process.env.JWT_SECRET_KEY), {
       subject: user.id,
       expiresIn: '7d',
     });
