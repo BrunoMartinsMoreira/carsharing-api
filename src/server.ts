@@ -1,12 +1,12 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import 'dotenv/config';
-import express, { NextFunction, Request, Response } from 'express';
 import 'reflect-metadata';
+import express, { NextFunction, Request, Response } from 'express';
+import 'express-async-errors';
 import swaggerUi from 'swagger-ui-express';
 import { AppError } from './errors/AppError';
 import { routes } from './routes';
 import swaggerFile from './swagger.json';
-import 'express-async-errors';
 import './database';
 import './shared/container';
 
