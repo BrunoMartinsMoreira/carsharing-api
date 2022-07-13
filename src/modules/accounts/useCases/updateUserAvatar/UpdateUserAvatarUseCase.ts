@@ -1,5 +1,6 @@
 import { inject, injectable } from 'tsyringe';
 import { AppError } from '../../../../errors/AppError';
+import { deleteFile } from '../../../../utils/file';
 import { IUsersRepository } from '../../repositories/IUserRepository';
 
 interface IRequest {
@@ -21,6 +22,7 @@ class UpdateUserAvatarUseCase {
     }
 
     if (user) {
+      await deleteFile(`./tmp/avatar/${user.avatar_url}`);
       user.avatar_url = avatar_file;
       await this.usersRepository.uploadAvatar(user);
     }
