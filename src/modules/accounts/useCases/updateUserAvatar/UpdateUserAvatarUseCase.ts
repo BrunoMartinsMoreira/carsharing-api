@@ -22,7 +22,7 @@ class UpdateUserAvatarUseCase {
 
     if (user) {
       user.avatar_url = avatar_file;
-      await this.usersRepository.create(user);
+      await this.usersRepository.uploadAvatar(user);
     }
   }
 }

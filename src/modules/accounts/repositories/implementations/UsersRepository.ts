@@ -9,6 +9,23 @@ class UsersRepository implements IUsersRepository {
   constructor() {
     this.repository = getRepository(User);
   }
+  async uploadAvatar({
+    name,
+    password,
+    email,
+    driver_licence,
+    id,
+    avatar_url,
+  }: ICreateUserDTO): Promise<void> {
+    await this.repository.save({
+      name,
+      password,
+      email,
+      driver_licence,
+      id,
+      avatar_url,
+    });
+  }
   async findById(id: string): Promise<User | undefined> {
     const user = await this.repository.findOne({
       where: {
@@ -33,12 +50,16 @@ class UsersRepository implements IUsersRepository {
     password,
     email,
     driver_licence,
+    id,
+    avatar_url,
   }: ICreateUserDTO): Promise<void> {
     const user = this.repository.create({
       name,
       password,
       email,
       driver_licence,
+      id,
+      avatar_url,
     });
 
     await this.repository.save(user);
