@@ -6,7 +6,6 @@
     "forceConsistentCasingInFileNames": true,
     "strict": false,                                      
     "noImplicitAny": true,
-    "baseUrl": ".",
     "skipLibCheck": true,
     "outDir": "./dist",
     "resolveJsonModule": true,

@@ -1,3 +1,4 @@
+import { AppError } from '../../../../../errors/AppError';
 import { MockCategoriesRepository } from '../../repositories/mocks/MockCategoriesRepository';
 import { CreateCategoryUseCase } from './CreateCategoryUseCase';
 
@@ -27,5 +28,26 @@ describe('Create a category', () => {
 
     expect(categoryCreated).toHaveProperty('id');
     expect(categoryCreated.name).toEqual(category.name);
+  });
+
+  it('should not be able to create a new category with an existing name', async () => {
+    expect(async () => {
+      const category = {
+        name: 'Category name test',
+        description: 'Category description test',
+      };
+
+      // cria pela primeira vez
+      await createCategoryUseCase.execute({
+        name: category.name,
+        description: category.description,
+      });
+
+      // segunda tentativa com o mesmo nome da anterior
+      await createCategoryUseCase.execute({
+        name: category.name,
+        description: category.description,
+      });
+    }).rejects.toBeInstanceOf(AppError);
   });
 });
