@@ -1,10 +1,10 @@
 /* eslint-disable no-use-before-define */
 import { getRepository, Repository } from 'typeorm';
-import { Category } from '../../infra/typeorm/entities/Category';
 import {
   ICategoryRepository,
   ICreateCategoryDTO,
-} from '../ICategoriesRepository';
+} from '../../../repositories/ICategoriesRepository';
+import { Category } from '../entities/Category';
 
 class CategoriesRepository implements ICategoryRepository {
   private respository: Repository<Category>;
