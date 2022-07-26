@@ -3,7 +3,7 @@ import { UsersRepository } from '../../modules/accounts/infra/typeorm/repositori
 import { IUsersRepository } from '../../modules/accounts/repositories/IUserRepository';
 import { CategoriesRepository } from '../../modules/cars/categories/infra/typeorm/repositories/CategoriesRepository';
 import { ICategoryRepository } from '../../modules/cars/categories/repositories/ICategoriesRepository';
-import { SpecificationRepository } from '../../modules/cars/specifications/repositories/implementations/SpecificationRepository';
+import { SpecificationRepository } from '../../modules/cars/specifications/infra/typeorm/repositories/SpecificationRepository';
 import { ISpecificationRepository } from '../../modules/cars/specifications/repositories/ISpecificationsRepository';
 
 container.registerSingleton<ICategoryRepository>(
