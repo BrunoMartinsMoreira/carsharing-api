@@ -1,8 +1,8 @@
 import { Router } from 'express';
 import { authenticateRoutes } from '../../../modules/accounts/infra/http/routes/authenticate.routes';
 import { usersRoutes } from '../../../modules/accounts/infra/http/routes/users.routes';
-import { categoriesRoutes } from '../../../modules/cars/categories/infra/http/routes/categories.routes';
-import { specificationsRoutes } from '../../../modules/cars/specifications/infra/http/routes/specs.routes';
+import { categoriesRoutes } from '../../../modules/cars/infra/http/routes/categories.routes';
+import { specificationsRoutes } from '../../../modules/cars/infra/http/routes/specs.routes';
 
 const routes = Router();
 
