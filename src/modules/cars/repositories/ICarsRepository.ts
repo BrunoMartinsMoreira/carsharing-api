@@ -1,4 +1,5 @@
 import { ICreateCarDTO } from '../dtos/ICreateCarDTO';
+import { Car } from '../infra/typeorm/entities/Car';
 
 interface ICarsRepository {
   create({
@@ -9,7 +10,9 @@ interface ICarsRepository {
     fine_amount,
     brand,
     category_id,
-  }: ICreateCarDTO): Promise<void>;
+  }: ICreateCarDTO): Promise<Car>;
+
+  findByLicencePlate(id: string): Promise<Car | undefined>;
 }
 
 export { ICarsRepository };
