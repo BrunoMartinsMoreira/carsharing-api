@@ -24,7 +24,7 @@ class Car {
   daily_rate: number;
 
   @Column()
-  available = true;
+  available: boolean;
 
   @Column()
   licence_plate: string;
@@ -36,7 +36,7 @@ class Car {
   brand: string;
 
   @ManyToOne(() => Category)
-  @JoinColumn({ name: 'categody_id' })
+  @JoinColumn({ name: 'category_id' })
   category: Category;
 
   @Column()
@@ -48,6 +48,7 @@ class Car {
   constructor() {
     if (!this.id) {
       this.id = uuidv4();
+      this.available = true;
     }
   }
 }
