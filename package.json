@@ -50,6 +50,7 @@
     "typeorm": "ts-node-dev ./node_modules/typeorm/cli",
     "migration": "yarn typeorm migration:create",
     "migrate": "yarn typeorm migration:run",
-    "test": "jest --watch"
+    "test": "jest --watch",
+    "seed": "ts-node-dev src/shared/infra/typeorm/seeds/admin.ts"
   }
 }
