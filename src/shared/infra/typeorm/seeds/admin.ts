@@ -12,8 +12,8 @@ async function createConnectionDb() {
     INSERT INTO USERS(id, name, email, driver_licence, password, "isAdmin", created_at)
     values(
      '${id}',
-     'Nicole Admin',
-     'nicole@admin.com',
+     'Dita Admin',
+     'Dita@admin.com',
      '45651987189',
      '${password}',
      true,
