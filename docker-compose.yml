@@ -4,28 +4,28 @@ services:
   db:
     image: postgres
     container_name: carsharing_db
-    restart: always
+    #restart: always
     ports:
       - 5432:5432
     environment:
       - POSTGRES_USER=bruno
       - POSTGRES_PASSWORD=bruno
-      - POSTGRES_DB=carsharingdb 
+      - POSTGRES_DB=carsharingdb
     volumes:
-      - pgdata:/data/postgres  
+      - pgdata:/data/postgres
   app:
     build: .
     container_name: carsharing
-    restart: always
+    #restart: always
     ports:
       - 3333:3333
-      - 9229:9229 
+      - 9229:9229
     volumes:
       - .:/usr/app
     links:
       - db
     depends_on:
-      - db      
+      - db
 
 volumes:
   pgdata:
