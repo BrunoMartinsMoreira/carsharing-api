@@ -51,6 +51,6 @@
     "migration": "yarn typeorm migration:create",
     "migrate": "yarn typeorm migration:run",
     "test": "jest --watch",
-    "seed": "ts-node-dev src/shared/infra/typeorm/seeds/admin.ts"
+    "seed": "ts-node-dev src/shared/infra/typeorm/seeds/mocks.ts"
   }
 }

@@ -23,6 +23,7 @@
   "rules": {
     "camelcase": "off",
     "import/no-unresolved": "error",
+    "no-plusplus":"off",
     "@typescript-eslint/naming-convention": [
       "error",
       {

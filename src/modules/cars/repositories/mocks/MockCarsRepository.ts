@@ -34,6 +34,25 @@ class MockCarsRepository implements ICarsRepository {
     const car = this.cars.find(car => car.licence_plate === licence_plate);
     return car;
   }
+
+  async findAvailable(
+    category_id?: string,
+    brand?: string,
+    name?: string,
+  ): Promise<Car[]> {
+    let availables = await this.cars.filter(car => car.available === true);
+
+    if (category_id || brand || name) {
+      availables = availables.filter(
+        car =>
+          car.category_id === category_id ||
+          car.brand === brand ||
+          car.name === name,
+      );
+    }
+
+    return availables;
+  }
 }
 
 export { MockCarsRepository };
