@@ -19,6 +19,8 @@ interface ICarsRepository {
     brand?: string,
     name?: string,
   ): Promise<Car[]>;
+
+  findByCarId(id: string): Promise<Car>;
 }
 
 export { ICarsRepository };
