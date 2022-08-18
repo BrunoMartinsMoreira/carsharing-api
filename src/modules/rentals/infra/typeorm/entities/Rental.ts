@@ -28,6 +28,9 @@ class Rental {
   expected_return_date: Date;
 
   @Column()
+  active: boolean;
+
+  @Column()
   total: number;
 
   @CreateDateColumn()
