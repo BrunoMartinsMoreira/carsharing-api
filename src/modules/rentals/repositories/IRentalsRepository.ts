@@ -5,11 +5,10 @@ interface IRentalsRepository {
   create({
     car_id,
     user_id,
-    start_date,
-    end_date,
     expected_return_date,
-    total,
   }: ICreateRentalDTO): Promise<Rental>;
+
+  findActiveByUserId(user_id: string): Promise<Rental>;
 }
 
 export { IRentalsRepository };

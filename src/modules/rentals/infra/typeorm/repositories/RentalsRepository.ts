@@ -13,22 +13,24 @@ class RentalsRepository implements IRentalsRepository {
   async create({
     car_id,
     user_id,
-    start_date,
-    end_date,
     expected_return_date,
-    total,
   }: ICreateRentalDTO): Promise<Rental> {
     const rental = this.repository.create({
       car_id,
       user_id,
-      start_date,
-      end_date,
       expected_return_date,
-      total,
+      active: true,
     });
 
     await this.repository.save(rental);
 
+    return rental;
+  }
+
+  async findActiveByUserId(user_id: string): Promise<Rental> {
+    const rental = await this.repository.findOne({
+      where: { user_id, active: true },
+    });
     return rental;
   }
 }
