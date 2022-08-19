@@ -4,6 +4,7 @@ import { usersRoutes } from '../../../modules/accounts/infra/http/routes/users.r
 import { carsRoutes } from '../../../modules/cars/infra/http/routes/cars.routes';
 import { categoriesRoutes } from '../../../modules/cars/infra/http/routes/categories.routes';
 import { specificationsRoutes } from '../../../modules/cars/infra/http/routes/specs.routes';
+import { rentalsRoutes } from '../../../modules/rentals/infra/http/routes/rentals.routes';
 
 const routes = Router();
 
@@ -12,5 +13,6 @@ routes.use('/specifications', specificationsRoutes);
 routes.use('/users', usersRoutes);
 routes.use('/sessions', authenticateRoutes);
 routes.use('/cars', carsRoutes);
+routes.use('/rentals', rentalsRoutes);
 
 export { routes };
