@@ -1,4 +1,3 @@
-/* eslint-disable no-use-before-define */
 import { getRepository, Repository } from 'typeorm';
 import {
   ICategoryRepository,
