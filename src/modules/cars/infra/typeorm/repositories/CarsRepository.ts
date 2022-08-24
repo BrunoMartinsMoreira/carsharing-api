@@ -79,6 +79,16 @@ class CarsRepository implements ICarsRepository {
 
     return car;
   }
+
+  async updateAvalabilityStatus(id: string, status: boolean): Promise<void> {
+    await this.repository
+      .createQueryBuilder()
+      .update()
+      .set({ available: status })
+      .where('id = :id')
+      .setParameters({ id })
+      .execute();
+  }
 }
 
 export { CarsRepository };

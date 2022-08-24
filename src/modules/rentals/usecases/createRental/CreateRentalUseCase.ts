@@ -54,6 +54,8 @@ class CreateRentalUseCase {
 
     const return_date = new Date();
 
+    await this.carsRepository.updateAvalabilityStatus(car_id, false);
+
     const rental = await this.rentalsRepository.create({
       car_id,
       user_id,
