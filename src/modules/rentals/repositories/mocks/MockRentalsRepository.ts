@@ -1,6 +1,6 @@
 import { ICreateRentalDTO } from '../../dtos/ICreateRentalDTO';
 import { Rental } from '../../infra/typeorm/entities/Rental';
-import { IRentalsRepository } from '../IRentalsRepository';
+import { IFinishRental, IRentalsRepository } from '../IRentalsRepository';
 
 class MockRentalsRepository implements IRentalsRepository {
   rentals: Rental[] = [];
@@ -29,6 +29,25 @@ class MockRentalsRepository implements IRentalsRepository {
       r => r.user_id === user_id && r.active === true,
     );
     return rental;
+  }
+
+  async findRentalById(id: string): Promise<Rental> {
+    const rental = this.rentals.find(r => r.id === id);
+    return rental;
+  }
+
+  async finishRental(data: IFinishRental): Promise<void> {
+    const { id, total, active, end_date } = data;
+
+    const rental = await this.findRentalById(id);
+
+    Object.assign(rental, {
+      total,
+      active,
+      end_date,
+    });
+
+    this.rentals.push(rental);
   }
 }
 

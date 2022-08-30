@@ -1,6 +1,9 @@
 import { getRepository, Repository } from 'typeorm';
 import { ICreateRentalDTO } from '../../../dtos/ICreateRentalDTO';
-import { IRentalsRepository } from '../../../repositories/IRentalsRepository';
+import {
+  IFinishRental,
+  IRentalsRepository,
+} from '../../../repositories/IRentalsRepository';
 import { Rental } from '../entities/Rental';
 
 class RentalsRepository implements IRentalsRepository {
@@ -32,6 +35,22 @@ class RentalsRepository implements IRentalsRepository {
       where: { user_id, active: true },
     });
     return rental;
+  }
+
+  async findRentalById(id: string): Promise<Rental> {
+    const rental = await this.repository.findOne({ where: id });
+    return rental;
+  }
+
+  async finishRental(data: IFinishRental): Promise<void> {
+    const { id, total, active, end_date } = data;
+    await this.repository
+      .createQueryBuilder()
+      .update()
+      .set({ total, active, end_date })
+      .where('id = :id')
+      .setParameters({ id })
+      .execute();
   }
 }
 
