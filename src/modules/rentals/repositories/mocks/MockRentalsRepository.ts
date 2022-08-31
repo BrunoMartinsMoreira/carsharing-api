@@ -49,6 +49,11 @@ class MockRentalsRepository implements IRentalsRepository {
 
     this.rentals.push(rental);
   }
+
+  async listRentalsByUserId(user_id: string): Promise<Rental[]> {
+    const rentals = this.rentals.filter(rental => rental.user_id === user_id);
+    return rentals;
+  }
 }
 
 export { MockRentalsRepository };

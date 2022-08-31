@@ -20,6 +20,8 @@ interface IRentalsRepository {
   findRentalById(id: string): Promise<Rental>;
 
   finishRental(data: IFinishRental): Promise<void>;
+
+  listRentalsByUserId(user_id: string): Promise<Rental[]>;
 }
 
 export { IRentalsRepository, IFinishRental };
