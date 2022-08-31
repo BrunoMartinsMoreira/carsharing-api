@@ -16,7 +16,7 @@ class CreateRentalController {
 
       return res.status(201).json(rental);
     } catch (error) {
-      return res.status(400).json({
+      return res.status(error.status).json({
         message: error.message,
       });
     }
