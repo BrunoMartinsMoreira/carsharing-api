@@ -188,6 +188,31 @@
           }
         }
       }
+    },
+    "/cars": {
+      "post": {
+        "tags": ["Cars"],
+        "summary": "Create a new car",
+        "description": "Create a new car",
+        "security": [{ "bearerAuth": [] }],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/Car"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Car already exists"
+          }
+        }
+      }
     }
   },
   "definitions": {
@@ -204,6 +229,41 @@
       "example": {
         "name": "Specification name example",
         "description": "Specification description example"
+      }
+    },
+    "Car": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "daily_rate": {
+          "type": "number"
+        },
+        "licence_plate": {
+          "type": "string"
+        },
+        "fine_amount": {
+          "type": "number"
+        },
+        "brand": {
+          "type": "string"
+        },
+        "category_id": {
+          "type": "string"
+        }
+      },
+      "example": {
+        "name": "Chevrolet Opala",
+        "description": "Chevrolet Opala description example",
+        "daily_rate": 95,
+        "licence_plate": "TST-9644",
+        "fine_amount": 52.8,
+        "brand": "Chevrolet",
+        "category_id": "hfiuf-afajr-0r31654-asfaf"
       }
     }
   },
