@@ -35,16 +35,17 @@ describe('Create category controller', () => {
 
     const { token } = authToken.body;
 
+    const hash = uuidv4();
+
     const response = await request(app)
       .post('/categories')
       .send({
-        name: 'Category supertest 6',
+        name: `Category supertest with success-${hash}`,
         description: 'Category supertest description 6',
       })
       .set({
         Authorization: `Bearer ${token}`,
       });
-
     expect(response.status).toBe(201);
   });
 
@@ -55,6 +56,16 @@ describe('Create category controller', () => {
     });
 
     const { token } = authToken.body;
+
+    await request(app)
+      .post('/categories')
+      .send({
+        name: 'Category supertest',
+        description: 'Category supertest description',
+      })
+      .set({
+        Authorization: `Bearer ${token}`,
+      });
 
     const res = await request(app)
       .post('/categories')

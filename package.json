@@ -50,6 +50,7 @@
   },
   "scripts": {
     "dev": "ts-node-dev --inspect --transpile-only --ignore-watch node_modules --respawn src/shared/infra/http/server.ts",
+    "server:up": "docker-compose up -d && yarn migrate",
     "typeorm": "ts-node-dev ./node_modules/typeorm/cli",
     "migration": "yarn typeorm migration:create",
     "migrate": "yarn typeorm migration:run",
