@@ -22,6 +22,9 @@ class DevolutionRentalUseCase {
   ) {}
 
   async execute({ id, userId }: IRequest): Promise<void> {
+    if (!id) {
+      throw new AppError('Rental id is required');
+    }
     const rental = await this.rentalsRepository.findRentalById(id);
     const dateNow = this.dateProvider.dateNow();
 

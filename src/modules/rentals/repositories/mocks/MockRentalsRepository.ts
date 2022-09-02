@@ -1,3 +1,4 @@
+import { v4 as uuid } from 'uuid';
 import { ICreateRentalDTO } from '../../dtos/ICreateRentalDTO';
 import { Rental } from '../../infra/typeorm/entities/Rental';
 import { IFinishRental, IRentalsRepository } from '../IRentalsRepository';
@@ -13,6 +14,7 @@ class MockRentalsRepository implements IRentalsRepository {
     const rental = new Rental();
 
     Object.assign(rental, {
+      id: uuid(),
       car_id,
       user_id,
       expected_return_date,
