@@ -1,5 +1,5 @@
 import { AppError } from '../../../../shared/errors/AppError';
-import { ICreateUserDTO } from '../../dtos/ICreateUsersDTO';
+import { ICreateUserDTO } from '../../dtos/ICreateUserDTO';
 import { MockUsersRepository } from '../../repositories/mocks/MockUsersRepository';
 import { CreateUserUseCase } from '../createUser/CreateUserUseCase';
 import { AuthenticateUserUseCase } from './AuthenticateUserUseCase';
