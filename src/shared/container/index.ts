@@ -13,7 +13,8 @@ import { ICategoryRepository } from '../../modules/cars/repositories/ICategories
 import { ISpecificationRepository } from '../../modules/cars/repositories/ISpecificationsRepository';
 import { RentalsRepository } from '../../modules/rentals/infra/typeorm/repositories/RentalsRepository';
 import { IRentalsRepository } from '../../modules/rentals/repositories/IRentalsRepository';
-import '../providers/datePovider/index';
+import '../providers/datePovider';
+import '../providers/emailProvider';
 
 container.registerSingleton<ICategoryRepository>(
   'CategoriesRepository',

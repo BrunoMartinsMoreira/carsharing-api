@@ -1,3 +1,5 @@
+import fs from 'fs';
+import handlebars from 'handlebars';
 import nodemailer, { Transporter } from 'nodemailer';
 import { injectable } from 'tsyringe';
 import { IEmailProvider, ISendMail } from '../IEmailProvider';
@@ -25,13 +27,16 @@ class EtherealEmailProvider implements IEmailProvider {
       .catch(err => console.log(err));
   }
 
-  async sendMail({ to, subject, body }: ISendMail): Promise<void> {
+  async sendMail({ to, subject, variables, path }: ISendMail): Promise<void> {
+    const emailTemplateFile = fs.readFileSync(path).toString('utf-8');
+    const emailTemplateParsed = handlebars.compile(emailTemplateFile);
+    const emailTemplateHTML = emailTemplateParsed(variables);
+
     const message = await this.client.sendMail({
       to,
       from: 'Carsharing <noreplay@carsharing.com.br>',
       subject,
-      text: body,
-      html: body,
+      html: emailTemplateHTML,
     });
 
     console.log('Message sent: %s', message.messageId);

@@ -22,6 +22,7 @@
     "reflect-metadata": "^0.1.13",
     "supertest": "^6.2.4",
     "swagger-ui-express": "^4.4.0",
+    "ts-node": "^10.9.1",
     "tsyringe": "4.4.0",
     "typeorm": "0.2.43",
     "uuid": "^8.3.2"
