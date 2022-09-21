@@ -15,6 +15,6 @@ routes.use('/users', usersRoutes);
 routes.use('/sessions', authenticateRoutes);
 routes.use('/cars', carsRoutes);
 routes.use('/rentals', rentalsRoutes);
-routes.use('/reset-password', passwordRoutes);
+routes.use('/password', passwordRoutes);
 
 export { routes };
