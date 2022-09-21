@@ -9,6 +9,7 @@ class UsersRepository implements IUsersRepository {
   constructor() {
     this.repository = getRepository(User);
   }
+
   async uploadAvatar({
     name,
     password,
@@ -63,6 +64,16 @@ class UsersRepository implements IUsersRepository {
     });
 
     await this.repository.save(user);
+  }
+
+  async updatePassword(password: string, id: string): Promise<void> {
+    await this.repository
+      .createQueryBuilder()
+      .update()
+      .set({ password })
+      .where('id = :id')
+      .setParameters({ id })
+      .execute();
   }
 }
 
