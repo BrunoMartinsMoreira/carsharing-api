@@ -1,18 +1,31 @@
+import 'reflect-metadata';
 import { AppError } from '../../../../shared/errors/AppError';
+import { DayJsProvider } from '../../../../shared/providers/datePovider/implementations/DayjsProvider';
 import { ICreateUserDTO } from '../../dtos/ICreateUserDTO';
 import { MockUsersRepository } from '../../repositories/mocks/MockUsersRepository';
+import { MockUsersTokenRepository } from '../../repositories/mocks/MockUsersTokenRepository';
 import { CreateUserUseCase } from '../createUser/CreateUserUseCase';
 import { AuthenticateUserUseCase } from './AuthenticateUserUseCase';
 
 let mockUsersRepository: MockUsersRepository;
 let authenticateUserUseCase: AuthenticateUserUseCase;
 let createUserUseCase: CreateUserUseCase;
+let mockUsersTokenRepository: MockUsersTokenRepository;
+let dateProvider: DayJsProvider;
 
 describe('Authenticate Users', () => {
   beforeEach(() => {
     mockUsersRepository = new MockUsersRepository();
+    mockUsersTokenRepository = new MockUsersTokenRepository();
+    dateProvider = new DayJsProvider();
+
     createUserUseCase = new CreateUserUseCase(mockUsersRepository);
-    authenticateUserUseCase = new AuthenticateUserUseCase(mockUsersRepository);
+
+    authenticateUserUseCase = new AuthenticateUserUseCase(
+      mockUsersRepository,
+      mockUsersTokenRepository,
+      dateProvider,
+    );
   });
 
   it('Should be able to authenticate an user', async () => {

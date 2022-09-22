@@ -54,14 +54,14 @@ class AuthenticateUserUseCase {
       throw new AppError('Incorret email or password', 401);
     }
 
-    const token = sign({}, String(JWT_SECRET_KEY), {
+    const token = sign({}, JWT_SECRET_KEY, {
       subject: user.id,
-      expiresIn: String(TOKEN_EXPIRATION),
+      expiresIn: TOKEN_EXPIRATION,
     });
 
-    const refresh_token = sign({ email }, String(REFRESH_TOKEN_SECRET_KEY), {
+    const refresh_token = sign({ email }, REFRESH_TOKEN_SECRET_KEY, {
       subject: user.id,
-      expiresIn: String(REFRESH_TOKEN_EXPIRATION),
+      expiresIn: REFRESH_TOKEN_EXPIRATION,
     });
 
     const expires_date = this.dateProvider.addDays(30);
