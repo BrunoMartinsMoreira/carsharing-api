@@ -11,6 +11,7 @@ interface IPayload {
 
 interface IResponse {
   refresh_token: string;
+  token: string;
 }
 
 @injectable()
@@ -24,7 +25,12 @@ class RefreshTokenUseCase {
   ) {}
 
   async execute(_refreshToken: string): Promise<IResponse> {
-    const { REFRESH_TOKEN_SECRET_KEY, REFRESH_TOKEN_EXPIRATION } = process.env;
+    const {
+      REFRESH_TOKEN_SECRET_KEY,
+      REFRESH_TOKEN_EXPIRATION,
+      JWT_SECRET_KEY,
+      TOKEN_EXPIRATION,
+    } = process.env;
 
     const { sub, email } = verify(
       _refreshToken,
@@ -56,13 +62,21 @@ class RefreshTokenUseCase {
 
     const expires_date = this.dateProvider.addDays(30);
 
-    const refresh_token = await this.usersTokensRepository.create({
+    const token = sign({}, JWT_SECRET_KEY, {
+      subject: user_id,
+      expiresIn: TOKEN_EXPIRATION,
+    });
+
+    await this.usersTokensRepository.create({
       user_id: sub,
       expires_date,
       refresh_token: new_refresh_token,
     });
 
-    return refresh_token;
+    return {
+      refresh_token: new_refresh_token,
+      token,
+    };
   }
 }
 
