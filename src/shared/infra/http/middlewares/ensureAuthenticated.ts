@@ -22,7 +22,7 @@ export async function ensureAuthenticated(
   const [, token] = authHeader.split(' ');
 
   try {
-    const { sub: user_id } = verify(token, String(JWT_SECRET_KEY)) as IPayload;
+    const { sub: user_id } = verify(token, JWT_SECRET_KEY) as IPayload;
 
     if (!user_id) {
       throw new AppError('Invalid token');
