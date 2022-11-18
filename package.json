@@ -8,6 +8,7 @@
     "@types/dotenv": "^8.2.0",
     "@types/handlebars": "^4.1.0",
     "@types/nodemailer": "^6.4.6",
+    "aws-sdk": "^2.1257.0",
     "bcryptjs": "^2.4.3",
     "csv-parse": "4.15.3",
     "dayjs": "^1.11.5",
