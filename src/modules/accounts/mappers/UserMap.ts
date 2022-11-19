@@ -9,11 +9,13 @@ export class UserMap {
     avatar_url,
     driver_licence,
   }: User): IUserResponseDto {
+    const avatarUrl = `${process.env.S3_BUCKET_URL}/avatars/${avatar_url}`;
+
     return {
       id,
       email,
       name,
-      avatar_url,
+      avatar_url: avatarUrl,
       driver_licence,
     };
   }
