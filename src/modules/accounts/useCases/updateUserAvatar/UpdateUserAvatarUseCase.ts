@@ -27,6 +27,7 @@ class UpdateUserAvatarUseCase {
     if (user.avatar_url) {
       await this.StorageProvider.delete(user.avatar_url, 'avatars');
     }
+
     await this.StorageProvider.save(avatar_file, 'avatars');
 
     user.avatar_url = avatar_file;
