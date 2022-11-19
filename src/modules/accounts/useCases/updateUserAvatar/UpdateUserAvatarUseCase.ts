@@ -14,7 +14,7 @@ class UpdateUserAvatarUseCase {
     @inject('UsersRepository')
     private usersRepository: IUsersRepository,
 
-    @inject('StorageProvider')
+    @inject('AwsS3StorageProvider')
     private readonly StorageProvider: IStorageProvider,
   ) {}
   async execute({ user_id, avatar_file }: IRequest): Promise<void> {
