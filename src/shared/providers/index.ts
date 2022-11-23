@@ -2,6 +2,7 @@ import { container } from 'tsyringe';
 import { IDateProvider } from './datePovider/IDateProvider';
 import { DayJsProvider } from './datePovider/implementations/DayjsProvider';
 import { IEmailProvider } from './emailProvider/IEmailProvider';
+import { AwsSesEmailProvider } from './emailProvider/implementations/AwsSesEmailProvider';
 import { EtherealEmailProvider } from './emailProvider/implementations/EtherealEmailProvider';
 import { AwsS3StorageProvider } from './StorageProvider/implementations/AwsS3StorageProvider';
 import { LocalStorageProvider } from './StorageProvider/implementations/LocalStorageProvider';
@@ -12,6 +13,11 @@ container.registerSingleton<IDateProvider>('DayjsProvider', DayJsProvider);
 container.registerInstance<IEmailProvider>(
   'EtherealEmailProvider',
   new EtherealEmailProvider(),
+);
+
+container.registerSingleton<IEmailProvider>(
+  'SESMailProvider',
+  AwsSesEmailProvider,
 );
 
 container.registerSingleton<IStorageProvider>(
