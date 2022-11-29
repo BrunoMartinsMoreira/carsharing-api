@@ -4,7 +4,6 @@ services:
   db:
     image: postgres
     container_name: carsharing_db
-    #restart: always
     ports:
       - 5432:5432
     environment:
@@ -16,7 +15,6 @@ services:
   app:
     build: .
     container_name: carsharing
-    #restart: always
     ports:
       - 3333:3333
       - 9229:9229
@@ -26,6 +24,12 @@ services:
       - db
     depends_on:
       - db
+
+  redis:
+    image: redis:alpine
+    container_name: redis
+    ports:
+      - 6379:6379   
 
 volumes:
   pgdata:
