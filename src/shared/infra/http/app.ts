@@ -8,6 +8,7 @@ import swaggerUi from 'swagger-ui-express';
 import swaggerFile from '../../../swagger.json';
 import { AppError } from '../../errors/AppError';
 import createConnection from '../typeorm';
+import { rateLimiter } from './middlewares/rateLimiter';
 import { routes } from './routes';
 import '../../container';
 
@@ -18,7 +19,7 @@ app.use(express.json());
 app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerFile));
 
 app.use(cors());
-
+app.use(rateLimiter);
 app.use('/', routes);
 
 app.use((error: Error, req: Request, res: Response, next: NextFunction) => {
